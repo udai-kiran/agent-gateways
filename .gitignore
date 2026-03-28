@@ -1,3 +1,12 @@
+# Go binaries
+*.exe
+*.exe~
+*.dll
+*.dylib
+telegram-gw
+whatsapp-gw
+twitter-gw
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

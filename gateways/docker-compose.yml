@@ -1,0 +1,30 @@
+services:
+  telegram-gateway:
+    build:
+      context: ..
+      dockerfile: gateways/docker/Dockerfile.telegram
+    ports:
+      - "8081:8080"
+    env_file:
+      - path: ../.env
+        required: false
+
+  whatsapp-gateway:
+    build:
+      context: ..
+      dockerfile: gateways/docker/Dockerfile.whatsapp
+    ports:
+      - "8082:8080"
+    env_file:
+      - path: ../.env
+        required: false
+
+  twitter-gateway:
+    build:
+      context: ..
+      dockerfile: gateways/docker/Dockerfile.twitter
+    ports:
+      - "8083:8080"
+    env_file:
+      - path: ../.env
+        required: false

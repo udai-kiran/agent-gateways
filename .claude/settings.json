@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "sandbox": {
+    "filesystem": {
+      "allowRead": [
+        "./**"
+      ],
+      "allowWrite": [
+        "./**",
+        "//tmp/**"
+      ],
+      "denyRead": [
+        "~/.ssh/**",
+        "~/.aws/**",
+        "//etc/**",
+        "~/CLAUDE.md",
+        "~/.claude/**"
+      ],
+      "denyWrite": [
+        "~/**",
+        "//etc/**"
+      ]
+    }
+  },
+  "permissions": {
+    "allow": [
+      "Read(./**)",
+      "Write(./**)",
+      "Bash(git *)",
+      "Bash(npm *)",
+      "Bash(python *)",
+      "Bash(ls *)"
+    ],
+    "deny": [
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(//etc/**)",
+      "Read(~/CLAUDE.md)",
+      "Read(~/.claude/**)",
+      "Write(~/**)",
+      "Bash(rm -rf *)",
+      "Bash(sudo *)",
+      "Bash(curl *)",
+      "WebFetch(*)"
+    ]
+  },
+  "enabledPlugins": {},
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-write.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-write.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-bash.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-write.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-write.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-bash.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
